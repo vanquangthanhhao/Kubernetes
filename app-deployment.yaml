@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app1
+spec:
+  replicas: 2 
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: app1
+        image: fuegotest/fuego:latest
+        env:
+        - name: AUTHOR
+          value: app1
+        stdin: true
+        tty: true
+        command: ["/bin/bash", "-c", "service jenkins start && /bin/bash"]
+        ports:
+        - containerPort: 8080
+        securityContext:
+          privileged: true
