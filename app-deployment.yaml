@@ -22,3 +22,36 @@ spec:
         - containerPort: 8080
         securityContext:
           privileged: true
+        volumeMounts:
+          - name: jobs
+            mountPath: /var/lib/jenkins/jobs
+#          - name: fuego-core
+#            mountPath: /fuego-core
+#          - name: fuego-renesas
+#            mountPath: /fuego-renesas
+#          - name: device
+#            mountPath: /dev
+#      volumes:
+#        - name: tvolume
+#          gcePersistentDisk:
+#            pdName: tvolume
+#            fsType: ext4
+#            partition: 1
+
+      volumes:
+        - name: jobs
+          hostPath:
+            path: /home/haovan/fuego_mount
+            type: Directory
+#        - name: fuego-core
+#          hostPath:
+#            path: /home/haovan/Desktop/Fuego/fuego-core
+#            type: Directory
+#        - name: fuego-renesas
+#          hostPath:
+#            path: /home/haovan/Desktop/Fuego/fuego-renesas
+#            type: Directory
+#        - name: device
+#          hostPath:
+#            path: /dev
+#            type: Directory

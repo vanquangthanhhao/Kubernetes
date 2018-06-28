@@ -2,7 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /fuego
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /fuego/
   name: app-ingress
 spec:
   rules:
@@ -11,5 +13,5 @@ spec:
       paths:
       - backend:
           serviceName: appsvc1
-          servicePort: 80
-        path: /app1
+          servicePort: 8080
+        path: /fuego
